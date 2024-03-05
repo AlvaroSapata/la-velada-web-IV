@@ -1,6 +1,9 @@
 ---
 import TwichLogo from "@/icons/twich.astro";
+import InstagramLogo from "@/icons/instagram.astro";
+import TwitterLogo from "@/icons/twitter.astro";
 ---
+
 <footer
   class="mt-20 w-full border-primary border-t-2 flex flex-col md:flex-row justify-center- items-center md:justify-between pt-6 pb-20 gap-y-10"
 >
@@ -16,7 +19,7 @@ import TwichLogo from "@/icons/twich.astro";
         rel="noopener"
         href="https://www.instagram.com/infolavelada/"
         class="hover:scale-125 hover:opacity-70 transition inline-block"
-        ><img src="public/instagram.svg" alt="logo de instagram" /></a
+        ><InstagramLogo class="text-primary" /></a
       >
     </li>
     <li>
@@ -25,9 +28,9 @@ import TwichLogo from "@/icons/twich.astro";
         rel="noopener"
         href="https://twitter.com/infolavelada"
         class="hover:scale-125 hover:opacity-70 transition inline-block"
-        ><img src="public/x.svg" alt="logo de X" /></a
+      >
+        <TwitterLogo class="text-primary" /></a
       >
     </li>
   </ul>
-  <TwichLogo class="text-primary"/>
 </footer>
