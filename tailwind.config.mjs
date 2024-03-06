@@ -9,6 +9,7 @@ export default {
 
 			primary: "#333",
 			secondary: "#ddd",
+      twitch: "#6441a4",
 		}
     },
   },
