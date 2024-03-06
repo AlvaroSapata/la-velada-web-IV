@@ -1,12 +1,18 @@
 ---
 import LaVeladaLogo from "@/icons/la-velada.astro";
 
-const TIMESTAMP_END = 1741111200000;
+const TIMESTAMP_END = 1709575200000;
 // real date = 04/March/2024 19:00 -> 1709575200000
+// false date = 04/March/2025 19:00 -> 1741111200000
 ---
 
 <section class="my-32 flex flex-col gap-y-10 justify-center items-center">
   <LaVeladaLogo class="text-primary" />
+  <span
+    id="event-started"
+    class="font-semibold text-2xl flex justify-center items-center"
+    style="display:none">El evento ya ha comenzado</span
+  >
 
   <div
     class="flex flex-row gap-x-2 text-primary uppercase font-semibold"
@@ -45,6 +51,7 @@ const TIMESTAMP_END = 1741111200000;
   const MINUTE = SECOND * 60;
   const HOUR = MINUTE * 60;
   const DAY = HOUR * 24;
+  const $eventStarted = document.getElementById("event-started");
 
   function init() {
     const $countdown = document.querySelector("[data-date]");
@@ -68,17 +75,34 @@ const TIMESTAMP_END = 1741111200000;
       const now = Date.now();
       const diff = date - now;
 
-      if ($days instanceof HTMLElement) {
-        $days.innerText = formatTime(diff / DAY);
-      }
-      if ($hours instanceof HTMLElement) {
-        $hours.innerText = formatTime((diff % DAY) / HOUR);
-      }
-      if ($minutes instanceof HTMLElement) {
-        $minutes.innerText = formatTime((diff % HOUR) / MINUTE);
-      }
-      if ($seconds instanceof HTMLElement) {
-        $seconds.innerText = formatTime((diff % MINUTE) / SECOND);
+      if (diff <= 0) {
+        // Si la diferencia es negativa o cero, establece todo a "00"
+        if ($days instanceof HTMLElement) {
+          $days.innerText = "00";
+        }
+        if ($hours instanceof HTMLElement) {
+          $hours.innerText = "00";
+        }
+        if ($minutes instanceof HTMLElement) {
+          $minutes.innerText = "00";
+        }
+        if ($seconds instanceof HTMLElement) {
+          $seconds.innerText = "00";
+        }
+        $eventStarted.style.display = "flex"; // Mostrar el mensaje
+      } else {
+        if ($days instanceof HTMLElement) {
+          $days.innerText = formatTime(diff / DAY);
+        }
+        if ($hours instanceof HTMLElement) {
+          $hours.innerText = formatTime((diff % DAY) / HOUR);
+        }
+        if ($minutes instanceof HTMLElement) {
+          $minutes.innerText = formatTime((diff % HOUR) / MINUTE);
+        }
+        if ($seconds instanceof HTMLElement) {
+          $seconds.innerText = formatTime((diff % MINUTE) / SECOND);
+        }
       }
     }
     setInterval(updateCountdown, SECOND);
