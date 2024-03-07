@@ -1,4 +1,4 @@
-<div id="smoke-bkg" class="fixed top-0 h-full w-full"></div>
+<div id="smoke-bkg" class="fixed top-0 h-full w-full" ></div>
 
 <script>
   import * as THREE from "three";
@@ -22,21 +22,18 @@
   // Renderer
   const renderer = new THREE.WebGLRenderer();
   renderer.setSize(w, h);
+
   // Background color
-  renderer.setClearColor(0x333333, 1);
+  renderer.setClearColor(0xffffff, 1);
 
   $bkg?.appendChild(renderer.domElement);
 
   // Add directional light
-  const light = new THREE.DirectionalLight(0xffffff,0,5)
+  const light = new THREE.DirectionalLight(0xffffff,0.5)
 
   // Light position
   light.position.set(-1,3,1)
   scene.add(light)
-
-  // Helper to check light direction
-  //const helper = new THREE.DirectionalLightHelper(light,5)
-  //scene.add(helper)
 
   // Array to store smoke particles
   const smokeParticles : THREE.Mesh[] = [];
@@ -52,9 +49,10 @@
     const smokeMaterial = new THREE.MeshLambertMaterial({
       map: texture,
       transparent: true,
+      opacity: 0.3
     });
 
-    const NUM_OF_PARTICLES = 100;
+    const NUM_OF_PARTICLES = 250;
     for (let p = 0; p < NUM_OF_PARTICLES; p++) {
       // Create particle
       const particle = new THREE.Mesh(smokeGeo, smokeMaterial);
