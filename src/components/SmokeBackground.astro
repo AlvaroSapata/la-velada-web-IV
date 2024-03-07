@@ -39,7 +39,7 @@
   const smokeParticles : THREE.Mesh[] = [];
 
   const loader = new THREE.TextureLoader();
-  loader.crossOrigin = ""; // <- Allow cross-origin loading, may be needed depending on the server setup
+  loader.crossOrigin = "anonymous"; // <- Allow cross-origin loading, may be needed depending on the server setup
 
   loader.load("/public/smoke.webp", (texture: THREE.Texture) => {
     // Geometry
