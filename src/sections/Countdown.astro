@@ -67,7 +67,7 @@ const TIMESTAMP_END = 1709575200000;
 
     const date = new Date(+timestamp).getTime();
 
-    const formatTime = (time) => {
+    const formatTime = (time:number) => {
       return Math.floor(time).toString().padStart(2, "0");
     };
 
