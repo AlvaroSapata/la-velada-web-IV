@@ -30,5 +30,9 @@ const { title } = Astro.props;
   html {
     font-family: "Jost Variable", system-ui, sans-serif;
     background-image: linear-gradient(to right,#5a5a5a, #757575, #c4c4c4, #757575, #5a5a5a);
+
+    @media (max-width: 640px) {
+      background-image: linear-gradient(to right, #5a5a5a, #c4c4c4, #5a5a5a);
+    }
   }
 </style>
